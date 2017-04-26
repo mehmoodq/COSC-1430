@@ -9,10 +9,6 @@ using namespace std;
 int main() 
 {
 
-	string y = "ZEBRA";
-	nameObj name(y);
-	cout << name.getScore();
-	int x;
-	cin >> x;
+	
 	
 }
