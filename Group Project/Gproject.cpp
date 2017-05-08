@@ -1,41 +1,37 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int main()
 {
-    int finalTotalScore = 0;
+    vector<string> v;
+    ifstream fin("/Users/prakash/Desktop/names.txt");
     
-    std::ifstream infile("names.txt");
-    std::string line;
-    int counter = 1;
-    
-    while (std::getline(infile, line))
+    string s;
+    while(fin >> s)
     {
-        //declaring the variables
-        int totalScore = 0;
-        int tempScore = 0;
-        std::istringstream iss(line);
-        string word;
-        // code for processing each word
-        if (!(iss >> word)) { break; } // error
-        // calculating each score
-        for(int i=0;i<word.length();i++){
-            int _char = word[i];
-            tempScore += (_char-64);
-        }
-        
-        totalScore = tempScore*counter;
-        cout<<"For "<<word<<" the score is: "<<totalScore<<endl;
-        finalTotalScore += totalScore;
-        //counter is to locate position of word in file
-        counter++;
+        v.push_back(s);
     }
     
-    cout<<"Final score of all names : "<<finalTotalScore<<endl;
+    sort (v.begin(), v.end());
+    int scoreSum   = 0;
+    for(int i = 0; i < v.size(); i++)
+    {
+        int nameScore = 0;
+        string name = v[i];
+        for(int j = 0; j < name.length(); j++)
+        {
+            nameScore += (name[j] - 'A');
+        }
+        nameScore = nameScore*(i+1);
+        scoreSum += nameScore;
+    }
+    cout << "Score sum is : " << scoreSum << endl;
+    
     return 0;
 }
