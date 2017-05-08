@@ -27,7 +27,7 @@ int main()
 
 	while (!(instream.eof())) {
 
-		nextLine = instream.getline; //Should store next line of file into nextLine, but gives error for some reason.
+		nextLine = instream.getline; 
 		nameObj temp(nextLine);
 		list.push_back(temp);
 		nameScores[temp] = temp.computeScore();
